@@ -1,25 +1,86 @@
-# Network-on-Chip Router (RTL)
 
-This repository contains a step-by-step RTL implementation of a Network-on-Chip (NoC) router written in Verilog.
+### Directory Description
 
-## Tools
-- ModelSim
-- VS Code
-- Verilog HDL
+| Directory | Purpose |
+|--------|--------|
+| rtl | RTL design modules |
+| tb | Testbenches for verification |
+| scripts | ModelSim simulation scripts |
+| sim | Simulation workspace |
 
-## Project Structure
+---
 
-rtl/     → RTL modules  
-tb/      → testbenches  
-sim/     → simulation workspace  
-scripts/ → ModelSim scripts  
+# Router Architecture Overview
 
-## Modules Implemented
+A typical **Network-on-Chip router** consists of several hardware blocks:
 
-✔ FIFO Buffer
+```
 
-## Next Modules
+Incoming Flit
+│
+▼
+Input Buffer (FIFO)
+│
+▼
+Routing Logic
+│
+▼
+Arbiter
+│
+▼
+Crossbar Switch
+│
+▼
+Output Ports
 
-- Routing Logic
-- Arbiter
-- Crossbar Switch
+```
+
+Each block will be implemented step-by-step.
+
+---
+
+# Implemented Module
+
+## FIFO Buffer
+
+The FIFO is the **first building block of the router input port**.
+
+It stores incoming packets temporarily before routing decisions are made.
+
+### Features
+
+- Synchronous FIFO
+- 8-bit data width
+- Depth = 8 entries
+- Separate read and write control
+- Full and empty status signals
+
+### FIFO Interface
+
+```verilog
+module fifo (
+    input clk,
+    input reset,
+    input write_en,
+    input read_en,
+    input [7:0] data_in,
+    output [7:0] data_out,
+    output full,
+    output empty
+);
+```
+        write_en
+           │
+           ▼
+      Write Pointer
+           │
+           ▼
+       +--------+
+       | Memory |
+       +--------+
+           ▲
+           │
+       Read Pointer
+           │
+           ▼
+        data_out
