@@ -129,3 +129,27 @@ Example:
 
 destination = East  
 payload = data carried by the packet
+
+## Arbiter
+
+The arbiter resolves conflicts when multiple input ports request the same output port.
+
+If two packets attempt to use the same output port simultaneously, the arbiter selects one request and grants access.
+
+### Current Implementation
+
+A simple 2-input priority arbiter is implemented.
+
+Inputs:
+- req0
+- req1
+
+Outputs:
+- grant0
+- grant1
+
+Priority rule:
+
+req0 has higher priority than req1.
+
+This ensures deterministic arbitration when both inputs request the same resource.
