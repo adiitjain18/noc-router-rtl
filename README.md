@@ -102,3 +102,30 @@ The routing module decodes the destination field and generates a one-hot output 
 Example:
 
 dest = 10 → East output activated.
+
+
+## Router Input Port
+
+The input port represents the first stage of the router pipeline.
+
+It combines two previously implemented modules:
+
+- FIFO buffer
+- Routing logic
+
+Incoming packets are first stored in the FIFO.  
+When packets are read from the FIFO, their destination field is extracted and sent to the routing logic to determine the correct output port.
+
+### Packet Format
+
+The current packet format is 8 bits:
+
+[7:6] destination  
+[5:0] payload
+
+Example:
+
+10_101011
+
+destination = East  
+payload = data carried by the packet
