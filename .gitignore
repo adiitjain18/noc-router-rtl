@@ -1,0 +1,13 @@
+# ModelSim
+work/
+transcript
+vsim.wlf
+
+# temporary files
+*.log
+*.jou
+*.pb
+
+# OS
+.DS_Store
+Thumbs.db
