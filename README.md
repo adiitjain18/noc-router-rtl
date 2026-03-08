@@ -84,3 +84,21 @@ module fifo (
            │
            ▼
         data_out
+
+
+## Routing Logic
+
+The routing logic determines which output port a packet should use based on its destination field.
+
+A simplified destination encoding is used:
+
+00 → Local  
+01 → North  
+10 → East  
+11 → West  
+
+The routing module decodes the destination field and generates a one-hot output indicating the selected port.
+
+Example:
+
+dest = 10 → East output activated.
