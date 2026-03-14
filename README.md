@@ -13,7 +13,8 @@ rtl/
  ├ routing_logic.v
  ├ input_port.v
  ├ arbiter.v
- └ crossbar.v
+ ├ crossbar.v
+ └ router.v
 ---
 
 # Router Architecture Overview
@@ -181,3 +182,23 @@ Outputs:
 - out1
 
 Selection signals determine which input is connected to each output.
+
+## Router Top-Level Module
+
+The top-level router module integrates all previously implemented components.
+
+Modules connected inside the router:
+
+- Input Port
+- Routing Logic
+- Arbiter
+- Crossbar Switch
+
+### Router Data Flow
+
+Incoming packets enter the router through the input port.  
+Packets are buffered using the FIFO and the destination field is decoded by the routing logic.
+
+If multiple requests target the same output port, the arbiter resolves the conflict.
+
+Finally, the crossbar switch forwards the packet to the selected output path.
