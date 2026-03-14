@@ -8,6 +8,12 @@
 | scripts | ModelSim simulation scripts |
 | sim | Simulation workspace |
 
+rtl/
+ ├ fifo.v
+ ├ routing_logic.v
+ ├ input_port.v
+ ├ arbiter.v
+ └ crossbar.v
 ---
 
 # Router Architecture Overview
@@ -153,3 +159,25 @@ Priority rule:
 req0 has higher priority than req1.
 
 This ensures deterministic arbitration when both inputs request the same resource.
+
+## Crossbar Switch
+
+The crossbar switch connects router input ports to output ports.
+
+It allows packets arriving from different input ports to be forwarded to the correct output direction.
+
+The crossbar acts as a configurable switching fabric controlled by arbitration and routing decisions.
+
+### Current Implementation
+
+A simplified 2-input, 2-output crossbar is implemented.
+
+Inputs:
+- in0
+- in1
+
+Outputs:
+- out0
+- out1
+
+Selection signals determine which input is connected to each output.

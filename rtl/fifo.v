@@ -30,16 +30,21 @@ assign empty = (count == 0);
 // sequential logic
 always @(posedge clk or posedge reset) begin
 
-    // if (reset) begin
-    //     write_ptr <= 0;
-    //     read_ptr  <= 0;
-    //     count     <= 0;
-    //     data_out  <= 0;
-    // end
-    // else begin
-
-    //     // write operation
-    //     if (write_en && !full) begin
+    if (reset) begin
+        write_ptr <= 0;
+        read_ptr  <= 0;
+        count     <= 0;
+        data_out  <= 0;
+    end
+    else begin
+    //     // The below logic caused the problem as mentioned in "fifo_tb.v". So modified the RTL Logic to fix it.
+    //     // The idea is that, If write and read happen together, the count register gets two assignments in the same clock cycle, which can cause incorrect behavior.
+    //     // We must explicitly handle three cases
+    //      // 1. write only
+    //      // 2. read only
+    //      // 3. read + write together
+    
+    //         if (write_en && !full) begin
     //         mem[write_ptr] <= data_in;
     //         write_ptr <= write_ptr + 1;
     //         count <= count + 1;
@@ -53,14 +58,6 @@ always @(posedge clk or posedge reset) begin
     //     end
 
     // end
-
-    if (reset) begin
-        write_ptr <= 0;
-        read_ptr  <= 0;
-        count     <= 0;
-        data_out  <= 0;
-    end
-    else begin
 
         // write only
         if (write_en && !full && !(read_en && !empty)) begin
@@ -83,7 +80,6 @@ always @(posedge clk or posedge reset) begin
 
             data_out <= mem[read_ptr];
             read_ptr <= read_ptr + 1;
-
             // count unchanged
         end
 

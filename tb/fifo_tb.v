@@ -27,15 +27,25 @@ fifo uut (
 );
 
 // clock generation
+
+
 always #5 clk = ~clk;
+always @(posedge clk)
+    if(read_en && !empty)
+        $display("Time=%0t  Data Read=%h", $time, data_out);
 
 initial begin
 
-    // clk = 0;
-    // reset = 1;
-    // write_en = 0;
-    // read_en = 0;
-    // data_in = 0;
+    clk = 0;
+    reset = 1;
+    write_en = 0;
+    read_en = 0;
+    data_in = 0;
+   
+
+    // // Problem arised here: 
+        // // In the simulation, the last data_out 44 was not visible, suspects were the testbench timing and FIFO RTL.
+        // // So tried to fix it in multiple attempts.
 
     // // release reset
     // #10 reset = 0;
@@ -50,17 +60,17 @@ initial begin
 
     // // read data from FIFO
     // #20 read_en = 1;
+    // // Solution attempt - 1 : Initially these were the delays 
+    // #40 read_en = 0;
 
+    // #50 $finish;
+
+    // //Tried to solve the below way giving the testbench enough time to end since the time taken for each value was 10 ns.
     // #80 read_en = 0;
 
     // // finish simulation
     // #20 $finish;
-
-    clk = 0;
-    reset = 1;
-    write_en = 0;
-    read_en = 0;
-    data_in = 0;
+    // // This didn't work out so went for below solution.
 
     // release reset
     #15 reset = 0;
@@ -86,5 +96,4 @@ initial begin
     #20 $finish;
 
 end
-
 endmodule
