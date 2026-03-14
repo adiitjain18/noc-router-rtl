@@ -97,5 +97,3 @@ always @(posedge clk or posedge reset) begin
          $time, mem[read_ptr], read_ptr, count);
 
 end
-
-endmodule
