@@ -1,7 +1,0 @@
-Set - 1
-
-1. In the fifo.v
-1.1 Why did we use wire for all the inputs as well as output full and empty but used reg for data_out?
-1.2 Why did we include reset in the sensitivity list?
-2. In fifo_tb.v
-2.1 When we instantiate a fifo, for example, .clk(clk), then which clk represents the testbench variable and which one does the design one?

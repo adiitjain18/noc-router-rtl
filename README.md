@@ -14,7 +14,8 @@ rtl/
  ├ input_port.v
  ├ arbiter.v
  ├ crossbar.v
- └ router.v
+ ├ router.v
+ └ router_2port.v
 
 tb/
  ├ fifo_tb.v
@@ -257,3 +258,48 @@ Pipeline stages implemented:
 4. Switch Traversal
 
 Pipeline registers are inserted between stages to mimic realistic router pipelines.
+
+## Multi-Port Router Architecture
+
+The router is being extended to support multiple input ports.
+
+A 2-port router is implemented as an intermediate step toward a full mesh router.
+
+Features:
+
+- two input FIFOs
+- arbitration between inputs
+- crossbar switching
+
+This introduces realistic NoC behavior where multiple packets compete for router resources.
+
+## Verification Strategy
+
+The router uses a self-checking testbench.
+
+The testbench:
+
+- sends packets into the router
+- records expected outputs
+- automatically compares router outputs with expected values
+
+If a mismatch occurs, the simulation stops and reports an error.
+
+## Configurable Arbiter
+
+The router supports multiple arbitration strategies.
+
+Available arbiters:
+
+- Fixed Priority Arbiter
+- Round-Robin Arbiter
+
+The arbiter can be selected using the parameter:
+
+USE_RR_ARBITER
+
+Example:
+
+router #(.USE_RR_ARBITER(1)) uut(...)
+
+This allows switching arbitration policies without modifying the RTL.

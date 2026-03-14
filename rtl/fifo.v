@@ -90,8 +90,11 @@ always @(posedge clk or posedge reset) begin
                   $time, data_in, write_ptr, count);
 
     if(read_en && !empty)
-        $display("[ %0t] FIFO READ   : data=%h read_ptr=%0d count=%0d",
-                  $time, data_out, read_ptr, count);
+        // $display("[ %0t] FIFO READ   : data=%h read_ptr=%0d count=%0d",
+        //           $time, data_out, read_ptr, count);
+
+        $display("[%0t] FIFO READ : data=%h read_ptr=%0d count=%0d",
+         $time, mem[read_ptr], read_ptr, count);
 
 end
 
