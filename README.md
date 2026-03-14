@@ -16,10 +16,16 @@ rtl/
  ├ crossbar.v
  ├ router.v
  └ router_2port.v
+├ fifo.v
+├ routing_logic.v
+├ input_port.v
+├ arbiter.v
+├ crossbar.v
+└ router.v
 
 tb/
- ├ fifo_tb.v
- └ router_tb.v
+├ fifo_tb.v
+└ router_tb.v
 ---
 
 # Router Architecture Overview
