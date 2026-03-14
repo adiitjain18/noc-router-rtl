@@ -4,17 +4,15 @@ if {![file exists work]} {
 
 vmap work work
 
-# Compile all RTL files
+# compile RTL
 vlog ../rtl/*.v
 
-# Compile all testbenches
+# compile testbenches
 vlog ../tb/*.v
 
-# Simulate
-vsim fifo_tb
+# simulate router
+vsim router_tb
 
-# Waveform setup
 add wave -r *
 
-# Run simulation
 run -all

@@ -15,6 +15,10 @@ rtl/
  ├ arbiter.v
  ├ crossbar.v
  └ router.v
+
+tb/
+ ├ fifo_tb.v
+ └ router_tb.v
 ---
 
 # Router Architecture Overview
@@ -202,3 +206,22 @@ Packets are buffered using the FIFO and the destination field is decoded by the 
 If multiple requests target the same output port, the arbiter resolves the conflict.
 
 Finally, the crossbar switch forwards the packet to the selected output path.
+
+## Router Verification
+
+A router-level testbench is implemented to verify the integration of all modules.
+
+The testbench sends packets with different destination fields into the router and observes the output behavior.
+
+### Packet Format
+
+[7:6] Destination  
+[5:0] Payload
+
+Example packets used in simulation:
+
+01_000001  
+10_000010  
+11_000011
+
+Simulation verifies that packets flow correctly through the router pipeline.
