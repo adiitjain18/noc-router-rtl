@@ -244,3 +244,16 @@ always @(posedge clk) begin
     $display("[TIME %0t] ROUTER : data_in=%h data_out=%h",
               $time, data_in, data_out);
 end
+
+## Router Pipeline Architecture
+
+The router datapath follows a simplified pipeline architecture similar to real NoC routers.
+
+Pipeline stages implemented:
+
+1. Input Buffer (FIFO)
+2. Routing Computation
+3. Switch Allocation
+4. Switch Traversal
+
+Pipeline registers are inserted between stages to mimic realistic router pipelines.

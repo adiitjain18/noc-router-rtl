@@ -25,7 +25,7 @@ always @(*) begin
     else
         out1 = in0;
 
-    $display("[TIME %0t] CROSSBAR : sel0=%b sel1=%b out0=%h out1=%h",
+    $display("[ %0t] CROSSBAR : sel0=%b sel1=%b out0=%h out1=%h",
               $time, sel0, sel1, out0, out1);
 
 end

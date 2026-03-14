@@ -25,6 +25,9 @@ wire grant1;
 wire [7:0] cross_out0;
 wire [7:0] cross_out1;
 
+reg [7:0] stage1;
+reg [7:0] stage2;
+reg [7:0] stage3;
 
 // Input Port
 input_port in_port(
@@ -71,10 +74,19 @@ crossbar sw(
 );
 
 always @(posedge clk) begin
-    $display("[TIME %0t] ROUTER : data_in=%h data_out=%h",
+    $display("[ %0t] ROUTER : data_in=%h data_out=%h",
               $time, data_in, data_out);
 end
 
+always @(posedge clk) begin
+
+    stage1 <= fifo_out;
+
+    stage2 <= stage1;
+
+    stage3 <= stage2;
+
+end
 // router output
 assign data_out = cross_out0;
 
