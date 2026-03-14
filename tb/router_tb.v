@@ -28,7 +28,10 @@ router uut(
 
 // clock generation
 always #5 clk = ~clk;
-
+initial begin
+    $monitor("[TIME %0t] TB : data_in=%h write=%b read=%b data_out=%h",
+              $time, data_in, write_en, read_en, data_out);
+end
 
 initial begin
 

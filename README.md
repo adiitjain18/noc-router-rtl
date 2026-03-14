@@ -225,3 +225,22 @@ Example packets used in simulation:
 11_000011
 
 Simulation verifies that packets flow correctly through the router pipeline.
+
+## Router Architecture Evolution
+
+The initial router implemented in this repository is a simplified single-input router used to demonstrate the basic datapath of a Network-on-Chip router.
+
+The architecture is now being extended toward a multi-port router similar to those used in mesh NoC networks.
+
+Next stage:
+
+- Multi-input router
+- Arbitration between competing packets
+- Crossbar switching between ports
+
+This progression gradually evolves the design into a realistic NoC router architecture.
+
+always @(posedge clk) begin
+    $display("[TIME %0t] ROUTER : data_in=%h data_out=%h",
+              $time, data_in, data_out);
+end

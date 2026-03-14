@@ -43,7 +43,7 @@ always @(posedge clk or posedge reset) begin
     //      // 1. write only
     //      // 2. read only
     //      // 3. read + write together
-    
+
     //         if (write_en && !full) begin
     //         mem[write_ptr] <= data_in;
     //         write_ptr <= write_ptr + 1;
@@ -84,6 +84,14 @@ always @(posedge clk or posedge reset) begin
         end
 
     end
+
+    if(write_en && !full)
+        $display("[TIME %0t] FIFO WRITE  : data=%h write_ptr=%0d count=%0d",
+                  $time, data_in, write_ptr, count);
+
+    if(read_en && !empty)
+        $display("[TIME %0t] FIFO READ   : data=%h read_ptr=%0d count=%0d",
+                  $time, data_out, read_ptr, count);
 
 end
 

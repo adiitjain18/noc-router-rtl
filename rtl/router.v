@@ -70,6 +70,10 @@ crossbar sw(
 
 );
 
+always @(posedge clk) begin
+    $display("[TIME %0t] ROUTER : data_in=%h data_out=%h",
+              $time, data_in, data_out);
+end
 
 // router output
 assign data_out = cross_out0;
