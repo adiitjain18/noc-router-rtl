@@ -9,6 +9,8 @@ module input_port(
     input  [7:0] data_in,
     output [7:0] data_out,
 
+    output [7:0] head_data,
+
     output north,
     output east,
     output west,
@@ -18,7 +20,9 @@ module input_port(
 
 // FIFO instance
 wire full;
+wire full;
 wire empty;
+// wire [7:0] head_data;
 
 fifo fifo_inst(
 
@@ -31,7 +35,9 @@ fifo fifo_inst(
     .data_out(data_out),
 
     .full(full),
-    .empty(empty)
+    .empty(empty),
+
+    .head_data(head_data)
 
 );
 
@@ -39,7 +45,8 @@ fifo fifo_inst(
 // destination bits
 wire [1:0] dest;
 
-assign dest = data_out[7:6];
+// assign dest = data_out[7:6];
+assign dest = head_data[7:6];
 
 
 // routing logic instance

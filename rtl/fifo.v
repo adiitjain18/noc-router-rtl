@@ -9,7 +9,8 @@ module fifo (
     output reg  [7:0]  data_out,
 
     output wire        full,
-    output wire        empty
+    output wire        empty,
+    output wire [7:0]  head_data
 );
 
 // memory array
@@ -26,6 +27,8 @@ reg [3:0] count;
 assign full  = (count == 8);
 assign empty = (count == 0);
 
+// peek current head of FIFO (for routing)
+assign head_data = mem[read_ptr];
 
 // sequential logic
 always @(posedge clk or posedge reset) begin
