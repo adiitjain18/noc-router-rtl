@@ -17,7 +17,7 @@ wire [7:0] fifo_out;
 wire north;
 wire east;
 wire west;
-wire local;
+wire local_out;
 
 wire grant0;
 wire grant1;
@@ -43,7 +43,7 @@ input_port in_port(
     .north(north),
     .east(east),
     .west(west),
-    .local(local)
+    .local_out(local_out)
 
 );
 

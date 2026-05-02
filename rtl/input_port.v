@@ -12,7 +12,7 @@ module input_port(
     output north,
     output east,
     output west,
-    output local
+    output local_out
 
 );
 
@@ -50,7 +50,7 @@ routing_logic route_inst(
     .north(north),
     .east(east),
     .west(west),
-    .local(local)
+    .local_out(local_out)
 
 );
 

@@ -3,7 +3,7 @@ module routing_logic(
     output reg north,
     output reg east,
     output reg west,
-    output reg local
+    output reg local_out
 );
 
 always @(*) begin
@@ -11,12 +11,12 @@ always @(*) begin
     north = 0;
     east  = 0;
     west  = 0;
-    local = 0;
+    local_out = 0;
 
     case(dest)
 
         2'b00: begin
-            local = 1;
+            local_out = 1;
             $display("[%0t] ROUTING : dest=%b -> LOCAL", $time, dest);
         end
 
