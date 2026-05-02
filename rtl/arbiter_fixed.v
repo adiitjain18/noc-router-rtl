@@ -1,4 +1,4 @@
-module arbiter(
+module arbiter_fixed(
 
     input req0,
     input req1,

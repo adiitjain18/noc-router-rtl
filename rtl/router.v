@@ -29,7 +29,7 @@ reg [7:0] stage1;
 reg [7:0] stage2;
 reg [7:0] stage3;
 
-parameter USE_RR_ARBITER = 0;
+parameter USE_RR_ARBITER = 1;
 // Input Port
 input_port in_port(
 
@@ -87,10 +87,22 @@ endgenerate
 
 
 // Crossbar
+// crossbar sw(
+
+//     .in0(fifo_out),
+//     .in1(fifo_out),
+
+//     .sel0(grant0),
+//     .sel1(grant1),
+
+//     .out0(cross_out0),
+//     .out1(cross_out1)
+
+// );
 crossbar sw(
 
-    .in0(fifo_out),
-    .in1(fifo_out),
+    .in0(stage3),
+    .in1(stage3),
 
     .sel0(grant0),
     .sel1(grant1),

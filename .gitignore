@@ -7,7 +7,8 @@ vsim.wlf
 *.log
 *.jou
 *.pb
-
+*.ini
+*.bak
 # OS
 .DS_Store
 Thumbs.db

@@ -61,7 +61,7 @@ assign req1 = !empty1;
 wire grant0;
 wire grant1;
 
-arbiter arb(
+arbiter_fixed arb(
     .req0(req0),
     .req1(req1),
     .grant0(grant0),
